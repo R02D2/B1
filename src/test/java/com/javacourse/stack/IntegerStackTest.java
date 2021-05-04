@@ -138,6 +138,21 @@ class IntegerStackTest {
 			assertThat(stack.pop()).isEqualTo(2);
 			assertThat(stack.pop()).isEqualTo(1);
 		}
+
+		@Test
+		@DisplayName("push после того как из стека достали все элементы")
+		void pushAfterPopAll() {
+			IntegerStack stack = new IntegerStack();
+			stack.push(1);
+			stack.push(2);
+			stack.push(3);
+			stack.pop();
+			stack.pop();
+			stack.pop();
+			stack.push(4);
+			assertThat(stack.pop()).isEqualTo(4);
+			assertThrows(RuntimeException.class, stack::pop);
+		}
 	}
 
 	@Test
